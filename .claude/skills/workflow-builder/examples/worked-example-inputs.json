@@ -1,0 +1,43 @@
+{
+  "client": "Worked Example Co",
+  "workflow": "CRM sync + AI follow-up drafts",
+  "weeks_per_year": 52,
+  "tools": [
+    {"name": "n8n Cloud", "plan": "Starter", "monthly_cost": 50, "pricing_status": "verified",
+     "source_url": "https://n8n.io/pricing", "basis": "illustrative price for the worked example",
+     "consumption": {"runs_per_month": 1300, "units_per_run": 1, "unit": "executions", "plan_included_units": 2500}},
+    {"name": "LLM API", "pricing_status": "estimated", "source_url": "https://example.com/llm-pricing",
+     "llm_usage": {"runs_per_month": 350, "input_tokens_per_run": 4000, "output_tokens_per_run": 1000,
+                   "input_price_per_mtok": 2.5, "output_price_per_mtok": 10.0}}
+  ],
+  "implementation": {
+    "mode": "freelancer", "hourly_rate": 90,
+    "phase_hours": {"discovery": 10, "build": 16, "testing": 16, "handoff": 6, "hypercare": 12},
+    "source": "benchmark", "source_url": "https://www.upwork.com/hire/n8n-experts/",
+    "basis": "Rate $90/h within the $40-100/h Upwork range; hours from the phase model (practitioner estimate): 2 workflows x 8 h build, testing 1.0 x build"
+  },
+  "adoption": {"hours": 20, "hourly_cost": 50, "source": "client",
+               "basis": "4 people x 5 h training and rollout at $50/h loaded"},
+  "maintenance": {"pct_of_build_per_year": 20, "source": "benchmark",
+                  "source_url": "https://themona.global/blog/workflow-automation-cost/",
+                  "basis": "20% of build cost per year, middle of the 15-25% published range"},
+  "tasks": [
+    {"label": "CRM record sync", "type": "avoided_labor", "gross_hours_per_week": 10, "hourly_cost": 30,
+     "units_per_week": 200, "unit": "records", "reviewer_hourly_cost": 40, "reviewer_source": "client",
+     "reviewer_basis": "Ops manager reviews, $40/h loaded",
+     "source": "client", "basis": "Contractor hours cut: 10 h/week at $30/h",
+     "review_source": "assumption",
+     "review_basis": "Deterministic data move: exceptions plus spot check (practitioner estimate 5-10%); 3 min per record checked",
+     "ramp": {"review_share": 0.10, "review_minutes_per_unit": 3, "rework_pct": 5},
+     "steady": {"review_share": 0.05, "review_minutes_per_unit": 3, "rework_pct": 0}},
+    {"label": "AI-drafted follow-up emails", "type": "avoided_labor", "gross_hours_per_week": 8, "hourly_cost": 30,
+     "units_per_week": 80, "unit": "emails", "reviewer_hourly_cost": 40, "reviewer_source": "client",
+     "reviewer_basis": "Ops manager reviews, $40/h loaded",
+     "source": "client", "basis": "Contractor hours cut: 8 h/week at $30/h",
+     "review_source": "assumption",
+     "review_basis": "AI-drafted routine messages: 100% review at launch, 15% sampling once errors settle (practitioner estimate 10-25%); 3 min per email",
+     "ramp": {"review_share": 1.0, "review_minutes_per_unit": 3, "rework_pct": 10},
+     "steady": {"review_share": 0.15, "review_minutes_per_unit": 3, "rework_pct": 5}}
+  ],
+  "timing": {"go_live_month": 1, "one_time_months": [0], "ramp_months": 3}
+}
